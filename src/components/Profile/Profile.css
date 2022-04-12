@@ -1,0 +1,17 @@
+.Profile {
+  box-shadow: 0 14px 28px rgb(0 0 0 / 10%), 0 10px 10px rgb(0 0 0 / 10%);
+}
+
+.Profile .profile-image {
+  position: absolute;
+  margin-top: -80px;
+  margin-left: 50px;
+}
+
+.profile-name {
+  margin-left: 215px;
+}
+
+.profile-mail {
+  margin-top: -10px;
+}

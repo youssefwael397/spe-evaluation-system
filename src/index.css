@@ -1,0 +1,106 @@
+* {
+  box-sizing: border-box;
+}
+
+.bg-spe-logo {
+  background-color: #054a94;
+}
+
+.nav-shadow {
+  box-shadow: 0px -3px 10px 5px #2289f5;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.Register {
+  min-width: 360px;
+  max-width: 800px;
+  min-height: 603px;
+}
+.Login {
+  width: 300px;
+  z-index: 6;
+}
+
+.form-container {
+  position: absolute;
+  top: 0;
+  transition: all 0.6s ease-in-out;
+  z-index: 2;
+  overflow-y: auto;
+}
+
+.screen__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  -webkit-clip-path: inset(0 0 0 0);
+  clip-path: inset(0 0 0 0);
+}
+
+.screen__background__shape {
+  transform: rotate(45deg);
+  position: absolute;
+}
+
+.screen__background__shape1 {
+  height: 520px;
+  width: 520px;
+  background: #fff;
+  top: -50px;
+  right: 120px;
+  border-radius: 0 72px 0 0;
+}
+
+.screen__background__shape2 {
+  height: 220px;
+  width: 220px;
+  background: #2461a285;
+  top: -172px;
+  right: 0;
+  border-radius: 32px;
+}
+
+.screen__background__shape3 {
+  height: 540px;
+  width: 190px;
+  background: linear-gradient(270deg, #054a94, #00356c);
+  top: -24px;
+  right: 0;
+  border-radius: 32px;
+}
+
+.screen__background__shape4 {
+  height: 400px;
+  width: 200px;
+  background: #326fb16b;
+  top: 420px;
+  right: 50px;
+  border-radius: 60px;
+}
+
+.line {
+  height: 4px !important;
+  color: #054a94;
+  background-color: #054a94;
+}
+
+.cards {
+  background-image: url("../public/images/2.jpg");
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.cards_Meeting {
+  background-image: url("../public/images/3.jpg");
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
