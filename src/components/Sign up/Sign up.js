@@ -450,7 +450,7 @@ function SiginUp() {
               <Link
                 className="text-decoration-none"
                 exact
-                to="/"
+                to="/login"
                 underline="none"
               >
                 Login

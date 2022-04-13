@@ -58,21 +58,19 @@ function Login() {
       body: form,
     });
 
-    if (res.ok) {
-      const data = await res.json();
-      if (data.status !== "ok") {
-        const newErr = await data.error;
-        setError(newErr);
-      } else {
-        if (data.login_token) {
-          window.localStorage.setItem("token", data.login_token);
-          window.localStorage.setItem("isLogging", true);
-          window.location = "/";
-        }
-      }
+
+    const data = await res.json();
+    if (data.status !== "ok") {
+      const newErr = await data.error;
+      setError(newErr);
     } else {
-      setError("Error in login");
+      if (data.login_token) {
+        window.localStorage.setItem("token", data.login_token);
+        window.localStorage.setItem("isLogging", true);
+        window.location = "/profile";
+      }
     }
+
 
 
   };

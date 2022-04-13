@@ -23,7 +23,7 @@ const NavBar = () => {
 
       setNavListItems([
         {
-          path: "/",
+          path: "/profile",
           title: user.user_name,
           icon: (
             <Avatar
@@ -58,7 +58,7 @@ const NavBar = () => {
       console.log("not logging or admin")
       setNavListItems([
         {
-          path: "/",
+          path: "/profile",
           title: user.user_name,
           icon: (
             <Avatar
@@ -92,7 +92,7 @@ const NavBar = () => {
           ),
         },
         {
-          path: '/',
+          path: '/login',
           title: 'Login',
           icon: (
             <LoginIcon />
@@ -107,7 +107,7 @@ const NavBar = () => {
       <div className="container-xl">
         <NavLink className="navbar-brand" exact to="/">
           <img width="65px" src="./images/logo.png" alt="logo" />
-          <span className="mx-2 fs-5 ">SPE Evaluation System</span>
+          <span className="mx-2 fs-5 ">SPESUSCES</span>
         </NavLink>
         <button
           className="navbar-toggler"
@@ -124,7 +124,7 @@ const NavBar = () => {
           <ul className="navbar-nav ms-auto">
             {
               navListItems.map((item) => (
-                item.path === '/' ? (
+                item.path === '/profile' ? (
                   <li className="nav-item">
                     <NavLink className="nav-link d-flex align-items-center" exact to={item.path}>
                       {item.icon}

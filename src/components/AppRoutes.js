@@ -14,12 +14,14 @@ import { UserContext } from './UserProvider';
 import Requests from './Requests/Requests';
 import Member from './AdminPanel/Member/Member';
 import Task from './AdminPanel/Task';
+import My404Component from "./My404Component/My404Component";
 
 export default function AppRoutes() {
 
   const { isLogging, isAdmin } = useContext(UserContext)
   return (
     <Routes>
+      <Route path='*' exact={true} element={<My404Component />} />
       {
         isLogging ? (
           <>
@@ -34,12 +36,12 @@ export default function AppRoutes() {
               ) : null
             }
             <Route path="/leaderBoard" element={<Leader_Board />} />
-            <Route index path="/" element={<Profile />} />
+            <Route index path="/profile" element={<Profile />} />
             <Route path="/logout" element={<Logout />} />
           </>
         ) : (
           <>
-            <Route index path="/" element={<Login />} />
+            <Route index path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
           </>
 

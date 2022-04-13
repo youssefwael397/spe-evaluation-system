@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 
 import "./Profile.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   Avatar,
   FormControl,
@@ -140,7 +140,7 @@ function Profile() {
 
   useEffect(() => {
     if (!isLogging) {
-      window.location = "/";
+      window.location = "/login";
     }
   }, [isLogging])
 
@@ -369,7 +369,7 @@ function Profile() {
               ))
             ) : (
               isAdmin ? (
-                <h5 className="text-center">Admins don't have tasks. Go to <Link className="text-decoration-none" to="admin">admin panel</Link></h5>
+                <h5 className="text-center">Admins don't have tasks. Go to <NavLink className="text-decoration-none" exact to="/admin">admin panel</NavLink></h5>
               ) : (null)
 
             )
@@ -377,6 +377,7 @@ function Profile() {
         </div>
 
         <Modal
+          className="overflow-auto"
           open={open}
           onClose={handleClose}
           aria-labelledby="modal-photo-update"
