@@ -105,7 +105,7 @@ const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-spe-logo nav-shadow">
       <div className="container-xl">
-        <NavLink className="navbar-brand" exact to="/">
+        <NavLink className="navbar-brand" exact to={isLogging ? "/profile" : "/login"}>
           <img width="65px" src="./images/logo.png" alt="logo" />
           <span className="mx-2 fs-5 ">SPESUSCES</span>
         </NavLink>
