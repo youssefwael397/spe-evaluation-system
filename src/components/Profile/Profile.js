@@ -26,7 +26,7 @@ import API_PATH from "./../API_PATH";
 import EditProfile from "./../EditProfile/EditProfile";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { UserContext } from './../UserProvider';
-
+import ROOT_PATH from '../ROOT_PATH'
 
 function Profile() {
 
@@ -140,7 +140,7 @@ function Profile() {
 
   useEffect(() => {
     if (!isLogging) {
-      window.location = "/login";
+      window.location = `${ROOT_PATH}/login`;
     }
   }, [isLogging])
 
@@ -369,7 +369,7 @@ function Profile() {
               ))
             ) : (
               isAdmin ? (
-                <h5 className="text-center">Admins don't have tasks. Go to <NavLink className="text-decoration-none" exact to="/admin">admin panel</NavLink></h5>
+                <h5 className="text-center">Admins don't have tasks. Go to <NavLink className="text-decoration-none" exact to={`${ROOT_PATH}/admin`}>admin panel</NavLink></h5>
               ) : (null)
 
             )

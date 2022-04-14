@@ -123,7 +123,7 @@ const NavBar = () => {
           <ul className="navbar-nav ms-auto">
             {
               navListItems.map((item) => (
-                item.path === '/profile' ? (
+                item.path.includes('profile') ? (
                   <li className="nav-item">
                     <NavLink className="nav-link d-flex align-items-center" exact to={item.path}>
                       {item.icon}

@@ -1,2 +1,2 @@
-const root_route = "/spe-evaluation-system"
-module.exports = root_route
+const ROOT_PATH = "/spe-evaluation-system"
+module.exports = ROOT_PATH

@@ -14,6 +14,7 @@ import { VisibilityOff, Visibility } from "@mui/icons-material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import API_PATH from "../API_PATH";
 import { UserContext } from "./../UserProvider";
+import ROOT_PATH from '../ROOT_PATH'
 
 function Login() {
   const [values, setValues] = React.useState({
@@ -27,7 +28,7 @@ function Login() {
 
   useEffect(() => {
     if (isLogging) {
-      window.location = "/";
+      window.location = `${ROOT_PATH}/profile`;
     }
   }, [isLogging]);
 
@@ -67,7 +68,7 @@ function Login() {
       if (data.login_token) {
         window.localStorage.setItem("token", data.login_token);
         window.localStorage.setItem("isLogging", true);
-        window.location = "/profile";
+        window.location = `${ROOT_PATH}/profile`;
       }
     }
 
@@ -135,7 +136,7 @@ function Login() {
 
           <p>
             Create A new Account <br />
-            <Link className="text-decoration-none" exact to="/signup" underline="none">
+            <Link className="text-decoration-none" exact to={`${ROOT_PATH}/signup`} underline="none">
               Sign Up
             </Link>
           </p>

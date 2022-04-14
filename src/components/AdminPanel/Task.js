@@ -23,6 +23,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import API_PATH from "./../API_PATH";
 import { UserContext } from './../UserProvider';
 import PersonIcon from "@mui/icons-material/Person";
+import ROOT_PATH from '../ROOT_PATH';
 
 // import { UserContext } from '../../UserProvider';
 
@@ -266,7 +267,7 @@ export default function Task() {
                                             <CardContent>
                                                 <Typography className="d-flex justify-content-between" gutterBottom variant="h5" component="div">
                                                     <PersonIcon />
-                                                    <Link className=" align text-decoration-none text-center" to={`/admin/member/${user.user_id}`}>
+                                                    <Link className=" align text-decoration-none text-center" to={`${ROOT_PATH}/admin/member/${user.user_id}`}>
                                                         <Typography className=" text-primary fs-4"  >
                                                             {user.user_name}
                                                         </Typography>

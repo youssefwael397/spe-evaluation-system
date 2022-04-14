@@ -27,6 +27,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import API_PATH from "../../API_PATH";
 import { UserContext } from '../../UserProvider';
 import AddCommitteeButton from './AddCommitteeButton';
+import ROOT_PATH from '../../ROOT_PATH';
 
 const style = {
     position: 'absolute',
@@ -348,7 +349,7 @@ export default function Member() {
                                         <CardActionArea className="text-light">
                                             <CardContent className="d-flex justify-content-between">
                                                 {task.type === 't' ? <TaskIcon /> : <GroupsIcon />}
-                                                <Link className="align text-decoration-none text-light text-center" to={`/admin/task/${task.task_id}`}>
+                                                <Link className="align text-decoration-none text-light text-center" to={`${ROOT_PATH}/admin/task/${task.task_id}`}>
                                                     <Typography className="fs-4" color="text.light">
                                                         {task.task_name}
                                                     </Typography>

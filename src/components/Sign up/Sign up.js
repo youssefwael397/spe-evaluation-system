@@ -15,6 +15,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import "./Sign up.css";
 import API_PATH from "../API_PATH";
+import ROOT_PATH from '../ROOT_PATH'
 import Alert from "@mui/material/Alert";
 import { Link } from "react-router-dom";
 
@@ -450,7 +451,7 @@ function SiginUp() {
               <Link
                 className="text-decoration-none"
                 exact
-                to="/login"
+                to={`${ROOT_PATH}/login`}
                 underline="none"
               >
                 Login
