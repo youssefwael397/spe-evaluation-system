@@ -10,7 +10,6 @@ import Requests from '../Requests/Requests'
 import { UserContext } from './../UserProvider'
 
 
-
 const NavBar = () => {
 
   const { user, image, isLogging, isAdmin } = useContext(UserContext)
@@ -70,7 +69,7 @@ const NavBar = () => {
           ),
         },
         {
-          path: "/LeaderBoard",
+          path: "/leaderBoard",
           title: "Leader Board",
           icon: <LeaderboardIcon className="mx-1" />,
         },

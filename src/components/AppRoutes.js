@@ -15,8 +15,11 @@ import Requests from './Requests/Requests';
 import Member from './AdminPanel/Member/Member';
 import Task from './AdminPanel/Task';
 import My404Component from "./My404Component/My404Component";
+import App from '../App'
 
 export default function AppRoutes() {
+
+  const root_route = "/spe-evaluation-system"
 
   const { isLogging, isAdmin } = useContext(UserContext)
   return (
@@ -28,25 +31,25 @@ export default function AppRoutes() {
             {
               isAdmin ? (
                 <>
-                  <Route path="admin/member/:id" element={<Member />} />
-                  <Route path="admin/task/:id" element={<Task />} />
-                  <Route path="/admin" element={<AdminPanel />} />
-                  <Route path="/requests" element={<Requests />} />
+                  <Route path={`${root_route}/admin/member/:id`} element={<Member />} />
+                  <Route path={`${root_route}/admin/task/:id`} element={<Task />} />
+                  <Route path={`${root_route}/admin`} element={<AdminPanel />} />
+                  <Route path={`${root_route}/requests`} element={<Requests />} />
                 </>
               ) : null
             }
-            <Route path="/leaderBoard" element={<Leader_Board />} />
-            <Route index path="/profile" element={<Profile />} />
-            <Route path="/logout" element={<Logout />} />
+            <Route path={`${root_route}/leaderBoard`} element={<Leader_Board />} />
+            <Route index path={`${root_route}/profile`} element={<Profile />} />
+            <Route path={`${root_route}/logout`} element={<Logout />} />
           </>
         ) : (
           <>
-            <Route index path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
+            <Route index path={`${root_route}/login`} element={<Login />} />
+            <Route path={`${root_route}/signup`} element={<SignUp />} />
           </>
-
         )
       }
+
     </Routes>
 
   )
