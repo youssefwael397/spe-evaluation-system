@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/spe-evaluation-system/static/css/main.a1694d47.css",
-    "main.js": "/spe-evaluation-system/static/js/main.c57ceaaa.js",
+    "main.js": "/spe-evaluation-system/static/js/main.2d335502.js",
     "static/js/787.bcf8a643.chunk.js": "/spe-evaluation-system/static/js/787.bcf8a643.chunk.js",
     "static/media/3.jpg": "/spe-evaluation-system/static/media/3.1530d9b54de96617386e.jpg",
     "static/media/2.jpg": "/spe-evaluation-system/static/media/2.88bdbc91a544a2a4d04a.jpg",
     "index.html": "/spe-evaluation-system/index.html",
     "main.a1694d47.css.map": "/spe-evaluation-system/static/css/main.a1694d47.css.map",
-    "main.c57ceaaa.js.map": "/spe-evaluation-system/static/js/main.c57ceaaa.js.map",
+    "main.2d335502.js.map": "/spe-evaluation-system/static/js/main.2d335502.js.map",
     "787.bcf8a643.chunk.js.map": "/spe-evaluation-system/static/js/787.bcf8a643.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a1694d47.css",
-    "static/js/main.c57ceaaa.js"
+    "static/js/main.2d335502.js"
   ]
 }
