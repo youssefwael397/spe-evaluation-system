@@ -8,10 +8,11 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { NavLink } from "react-router-dom";
 import Requests from '../Requests/Requests'
 import { UserContext } from './../UserProvider'
-import root_route from '../ROOT_PATH'
+import ROOT_PATH from '../ROOT_PATH.js'
 
 const NavBar = () => {
 
+  const root_route = ROOT_PATH
   const { user, image, isLogging, isAdmin } = useContext(UserContext)
   const [navListItems, setNavListItems] = useState([])
 
