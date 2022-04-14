@@ -2,7 +2,6 @@
 import {
   Routes,
   Route,
-  HashRouter
 } from "react-router-dom";
 import React, { useContext } from 'react'
 import SignUp from './Sign up/Sign up';
@@ -22,7 +21,6 @@ export default function AppRoutes() {
   const root_route = ROOT_PATH
   const { isLogging, isAdmin } = useContext(UserContext)
   return (
-    // <HashRouter>
     <Routes>
       <Route path='*' exact={true} element={<My404Component />} />
       {
@@ -39,17 +37,17 @@ export default function AppRoutes() {
               ) : null
             }
             <Route path={`${root_route}/leaderBoard`} element={<Leader_Board />} />
-            <Route index path={`${root_route}/profile`} element={<Profile />} />
+            <Route path={`${root_route}/profile`} element={<Profile />} />
             <Route path={`${root_route}/logout`} element={<Logout />} />
           </>
         ) : (
           <>
-            <Route index path={`${root_route}/login`} element={<Login />} />
+            <Route path={`${root_route}/login`} element={<Login />} />
             <Route path={`${root_route}/signup`} element={<SignUp />} />
           </>
         )
       }
     </Routes>
-    // </HashRouter>
+
   )
 }

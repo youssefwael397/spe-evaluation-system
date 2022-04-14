@@ -9,13 +9,13 @@ function App() {
 
   return (
     <UserProvider>
-      <Router>
+      <Router basename="/spe-evaluation-system">
         <div className="App bgColor">
           <NavBar />
           <AppRoutes />
         </div>
       </Router>
-    </UserProvider>
+    </UserProvider >
   );
 }
 

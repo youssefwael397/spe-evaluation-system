@@ -17,7 +17,7 @@ import "./Sign up.css";
 import API_PATH from "../API_PATH";
 import ROOT_PATH from '../ROOT_PATH'
 import Alert from "@mui/material/Alert";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -448,14 +448,14 @@ function SiginUp() {
             </Button>
             <p className="text-center">
               Have An Account <br />
-              <Link
+              <NavLink
                 className="text-decoration-none"
                 exact
                 to={`${ROOT_PATH}/login`}
                 underline="none"
               >
                 Login
-              </Link>
+              </NavLink>
             </p>
           </form>
         </div>

@@ -9,7 +9,7 @@ import {
   IconButton,
   Button,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import API_PATH from "../API_PATH";
@@ -136,9 +136,9 @@ function Login() {
 
           <p>
             Create A new Account <br />
-            <Link className="text-decoration-none" exact to={`${ROOT_PATH}/signup`} underline="none">
+            <NavLink className="text-decoration-none" exact to={`${ROOT_PATH}/signup`} underline="none">
               Sign Up
-            </Link>
+            </NavLink>
           </p>
         </form>
       </div >
