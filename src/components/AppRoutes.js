@@ -15,11 +15,8 @@ import Requests from './Requests/Requests';
 import Member from './AdminPanel/Member/Member';
 import Task from './AdminPanel/Task';
 import My404Component from "./My404Component/My404Component";
-import App from '../App'
-
+import root_route from '../ROOT_PATH'
 export default function AppRoutes() {
-
-  const root_route = "/spe-evaluation-system"
 
   const { isLogging, isAdmin } = useContext(UserContext)
   return (
