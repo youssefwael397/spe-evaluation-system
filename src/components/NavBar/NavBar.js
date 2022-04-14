@@ -9,6 +9,7 @@ import { NavLink } from "react-router-dom";
 import Requests from '../Requests/Requests'
 import { UserContext } from './../UserProvider'
 import ROOT_PATH from '../ROOT_PATH.js'
+import logo from './logo.png'
 
 const NavBar = () => {
 
@@ -105,8 +106,8 @@ const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-spe-logo nav-shadow">
       <div className="container-xl">
-        <NavLink className="navbar-brand" exact to={isLogging ? "/profile" : "/login"}>
-          <img width="65px" src="./images/logo.png" alt="logo" />
+        <NavLink className="navbar-brand" exact to={isLogging ? `${root_route}/profile` : `${root_route}/login`}>
+          <img width="65px" src={logo} alt="logo" />
           <span className="mx-2 fs-5 ">SPESUSCES</span>
         </NavLink>
         <button

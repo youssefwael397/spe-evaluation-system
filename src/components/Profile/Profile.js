@@ -27,6 +27,7 @@ import EditProfile from "./../EditProfile/EditProfile";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { UserContext } from './../UserProvider';
 import ROOT_PATH from '../ROOT_PATH'
+import background from './background.jpeg'
 
 function Profile() {
 
@@ -202,7 +203,7 @@ function Profile() {
         <Avatar
           className="w-100"
           alt={userInfo.user_name}
-          src="../images/background.jpeg"
+          src={background}
           sx={{ height: 300 }}
           variant="rounded"
         />
