@@ -6,7 +6,7 @@ export default function Logout() {
     const { user } = useContext(UserContext)
     useEffect(() => {
         window.localStorage.clear()
-        window.location = `${ROOT_PATH}/login`
+        window.location = `login`
     }, [])
 
 
