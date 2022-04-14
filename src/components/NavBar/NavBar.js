@@ -8,7 +8,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { NavLink } from "react-router-dom";
 import Requests from '../Requests/Requests'
 import { UserContext } from './../UserProvider'
-
+import root_route from '../ROOT_PATH'
 
 const NavBar = () => {
 
@@ -22,7 +22,7 @@ const NavBar = () => {
 
       setNavListItems([
         {
-          path: "/profile",
+          path: `${root_route}/profile`,
           title: user.user_name,
           icon: (
             <Avatar
@@ -34,12 +34,12 @@ const NavBar = () => {
           ),
         },
         {
-          path: "/leaderBoard",
+          path: `${root_route}/leaderBoard`,
           title: "Leader Board",
           icon: <LeaderboardIcon className="mx-1" />,
         },
         {
-          path: "/admin",
+          path: `${root_route}/admin`,
           title: "Admin Panel",
           icon: <AdminPanelSettingsIcon className="mx-1" />,
         },
@@ -47,7 +47,7 @@ const NavBar = () => {
           path: "/requests",
         },
         {
-          path: "/logout",
+          path: `${root_route}/logout`,
           title: "Logout",
           icon: <LogoutIcon className="text-secondary mx-1" />
           ,
@@ -57,7 +57,7 @@ const NavBar = () => {
       console.log("not logging or admin")
       setNavListItems([
         {
-          path: "/profile",
+          path: `${root_route}/profile`,
           title: user.user_name,
           icon: (
             <Avatar
@@ -69,12 +69,12 @@ const NavBar = () => {
           ),
         },
         {
-          path: "/leaderBoard",
+          path: `${root_route}/leaderBoard`,
           title: "Leader Board",
           icon: <LeaderboardIcon className="mx-1" />,
         },
         {
-          path: "/logout",
+          path: `${root_route}/logout`,
           title: "Logout",
           icon: <LogoutIcon className="text-secondary mx-1" />
           ,
@@ -84,14 +84,14 @@ const NavBar = () => {
       console.log("not logging")
       setNavListItems([
         {
-          path: '/signup',
+          path: `${root_route}/signup`,
           title: 'Register',
           icon: (
             <PersonAddIcon />
           ),
         },
         {
-          path: '/login',
+          path: `${root_route}/login`,
           title: 'Login',
           icon: (
             <LoginIcon />

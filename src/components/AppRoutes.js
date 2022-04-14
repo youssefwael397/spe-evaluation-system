@@ -15,7 +15,7 @@ import Requests from './Requests/Requests';
 import Member from './AdminPanel/Member/Member';
 import Task from './AdminPanel/Task';
 import My404Component from "./My404Component/My404Component";
-import root_route from '../ROOT_PATH'
+import root_route from './ROOT_PATH'
 export default function AppRoutes() {
 
   const { isLogging, isAdmin } = useContext(UserContext)
