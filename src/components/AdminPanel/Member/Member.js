@@ -255,7 +255,7 @@ export default function Member() {
                         <Avatar
                             className="profile-image text-center mx-auto w-75 h-75"
                             alt={userInfo.user_name}
-                            src={`data:image/jpeg;base64, ${userInfo.image}`}
+                            src={`${userInfo.image}`}
                             variant="rounded"
                         />
                     </div>

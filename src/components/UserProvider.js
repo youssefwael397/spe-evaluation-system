@@ -64,13 +64,17 @@ export const UserProvider = (props) => {
     }, [userInfo])
 
     const getUserInfo = async () => {
-        await fetch(`${API_PATH}/users/${user.user_id}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === 'ok') {
-                    setUserInfo(data.user)
-                }
-            })
+        if (user.user_id) {
+
+            await fetch(`${API_PATH}/users/${user.user_id}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'ok') {
+                        setUserInfo(data.user)
+                    }
+                })
+        }
+
     }
 
     return (

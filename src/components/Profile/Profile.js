@@ -218,7 +218,7 @@ function Profile() {
 
           <Avatar
             alt={userInfo.user_name}
-            src={`data:image/jpeg;base64, ${image}`}
+            src={`${image}`}
             sx={{ width: 150, height: 150 }}
             variant="rounded"
 
@@ -393,7 +393,7 @@ function Profile() {
               Edit photo
             </Typography>
 
-            <img className="w-100 my-2 rounded" src={`data:image/jpeg;base64, ${image}`} alt={user.user_name} />
+            <img className="w-100 my-2 rounded" src={`${image}`} alt={user.user_name} />
 
             <form onSubmit={(e) => updateImage(e)}>
               <Typography id="modal-modal-description" sx={{ mt: 2 }} className="text-center w-100 mx-auto">

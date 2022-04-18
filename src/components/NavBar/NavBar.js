@@ -30,7 +30,7 @@ const NavBar = () => {
             <Avatar
               className="mx-1"
               alt={user.user_name}
-              src={`data:image/jpeg;base64, ${image}`}
+              src={`${image}`}
               sx={{ width: 30, height: 30 }}
             />
           ),
@@ -65,7 +65,7 @@ const NavBar = () => {
             <Avatar
               className="mx-1"
               alt={user.user_name}
-              src={`data:image/jpeg;base64, ${image}`}
+              src={`${image}`}
               sx={{ width: 30, height: 30 }}
             />
           ),

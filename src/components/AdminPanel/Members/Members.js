@@ -78,7 +78,7 @@ export default function Members() {
                                     <CardMedia
                                         component="img"
                                         height="400"
-                                        image={`data:image/jpeg;base64, ${member.image}`}
+                                        image={`${member.image}`}
                                         alt={member.user_name}
                                     />
                                     <CardContent>
