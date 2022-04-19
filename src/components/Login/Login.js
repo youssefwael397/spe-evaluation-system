@@ -28,7 +28,7 @@ function Login() {
 
   useEffect(() => {
     if (isLogging) {
-      window.location = `/spe-evaluation-system/profile`;
+      window.location = `${ROOT_PATH}/profile`;
     }
   }, [isLogging]);
 
