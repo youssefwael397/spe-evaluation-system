@@ -130,8 +130,12 @@ const committeesList = [
     value: "SOCIAL_MEDIA",
   },
   {
-    name: "DATA SCIENCE",
-    value: "DATA SCIENCE",
+    name: "DATA ANALYSIS",
+    value: "DATA ANALYSIS",
+  },
+  {
+    name: "BD",
+    value: "BD",
   },
 ];
 
@@ -181,7 +185,7 @@ function SiginUp() {
     if (success) {
       setTimeout(() => {
         window.location.reload();
-      }, 10000);
+      }, 2000);
     }
   }, [success]);
 
@@ -189,8 +193,8 @@ function SiginUp() {
     e.preventDefault();
     setSuccess("");
     setError("");
-    if (!image) {
-      setError("Failed...Please Attach your photo.");
+    if (image === "") {
+      setError("Failed to create an account. Please Attach your photo.");
     }
     let form = new FormData();
     form.append("user_name", fName.trim() + " " + lName.trim());
@@ -260,6 +264,7 @@ function SiginUp() {
               value={speId}
               type="number"
               inputMode="numeric"
+              required
               inputProps={{ inputMode: "numeric", min: 0 }}
               maxLength="11"
               onChange={(e) => setSpeId(e.target.value)}
