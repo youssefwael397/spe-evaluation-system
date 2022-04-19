@@ -68,7 +68,7 @@ function Login() {
       if (data.login_token) {
         window.localStorage.setItem("token", data.login_token);
         window.localStorage.setItem("isLogging", true);
-        window.location = `/spe-evaluation-system/profile`;
+        window.location = `${ROOT_PATH}/profile`;
       }
     }
 
