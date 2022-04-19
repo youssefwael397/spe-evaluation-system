@@ -193,9 +193,6 @@ function SiginUp() {
     e.preventDefault();
     setSuccess("");
     setError("");
-    if (image === "") {
-      setError("Failed to create an account. Please Attach your photo.");
-    }
     let form = new FormData();
     form.append("user_name", fName.trim() + " " + lName.trim());
     form.append("spe_id", speId);
@@ -209,23 +206,28 @@ function SiginUp() {
     form.append("committee_name", committee);
     form.append("image", image);
 
-    await fetch(`${API_PATH}/users/create`, {
-      method: "POST",
-      body: form,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === "ok") {
-          setSuccess(
-            "Thank you for Registration. Wait for Accepting your Request"
-          );
-        } else {
-          setError(data.error);
-        }
+    if (image !== "") {
+      await fetch(`${API_PATH}/users/create`, {
+        method: "POST",
+        body: form,
       })
-      .catch((error) =>
-        setError("Failed To Create An Account. Please Try Again.")
-      );
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status === "ok") {
+            setSuccess(
+              "Thank you for Registration. Wait for Accepting your Request"
+            );
+          } else {
+            setError(data.error);
+          }
+        })
+        .catch((error) =>
+          setError("Failed To Create An Account. Please Try Again.")
+        );
+    } else {
+      setError("Failed to create an account. Please Attach your photo.");
+    }
+
   };
 
   return (
@@ -426,7 +428,6 @@ function SiginUp() {
 
             <input
               onChange={(e) => setImage(e.target.files[0])}
-              required
               accept="image/*"
               id="icon-button-file"
               type="file"
