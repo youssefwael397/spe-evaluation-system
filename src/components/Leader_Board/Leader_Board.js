@@ -197,7 +197,7 @@ function Leader_Board() {
                                             <Avatar
                                                 className="Leader_Board-image mx-auto"
                                                 alt="Nouran Ali"
-                                                src={`data:image/jpeg;base64, ${member.image}`}
+                                                src={`${member.image}`}
                                                 sx={{ width: 100, height: 100 }}
                                                 variant="rounded"
                                             />
