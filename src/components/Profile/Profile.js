@@ -190,7 +190,7 @@ function Profile() {
       .then(res => res.json())
       .then(data => {
         if (data.status === 'ok') {
-          window.location.reload()
+          window.location.href = `/spe-evaluation-system/profile`;
         } else {
           alert('Failed to update photo. Try Again...')
         }

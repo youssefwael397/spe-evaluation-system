@@ -9,7 +9,6 @@ import {
 import CreateIcon from "@mui/icons-material/Create";
 import { UserContext } from './../UserProvider';
 import API_PATH from './../API_PATH'
-import ROOT_PATH from '../ROOT_PATH';
 
 export default function EditProfile() {
 
@@ -63,7 +62,7 @@ export default function EditProfile() {
         }).then(res => res.json())
             .then(data => {
                 if (data.status === 'ok') {
-                    window.location.href = `${ROOT_PATH}/profile`
+                    window.location.reload()
                 } else {
                     alert('Failed to edit info. Please Try Again...')
                 }

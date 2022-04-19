@@ -28,7 +28,7 @@ function Login() {
 
   useEffect(() => {
     if (isLogging) {
-      window.location = `${ROOT_PATH}/profile`;
+      window.location = `/spe-evaluation-system/profile`;
     }
   }, [isLogging]);
 
@@ -68,7 +68,7 @@ function Login() {
       if (data.login_token) {
         window.localStorage.setItem("token", data.login_token);
         window.localStorage.setItem("isLogging", true);
-        window.location = `${ROOT_PATH}/profile`;
+        window.location.reload()
       }
     }
 
