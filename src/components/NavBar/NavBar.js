@@ -14,7 +14,7 @@ import logo from './logo.png'
 const NavBar = () => {
 
   const root_route = ROOT_PATH
-  const { user, image, isLogging, isAdmin } = useContext(UserContext)
+  const { user, userInfo, image, isLogging, isAdmin } = useContext(UserContext)
   const [navListItems, setNavListItems] = useState([])
 
   useEffect(() => {
@@ -25,11 +25,11 @@ const NavBar = () => {
       setNavListItems([
         {
           path: `${root_route}/profile`,
-          title: user.user_name,
+          title: userInfo.user_name,
           icon: (
             <Avatar
               className="mx-1"
-              alt={user.user_name}
+              alt={userInfo.user_name}
               src={`${image}`}
               sx={{ width: 30, height: 30 }}
             />
@@ -64,7 +64,7 @@ const NavBar = () => {
           icon: (
             <Avatar
               className="mx-1"
-              alt={user.user_name}
+              alt={userInfo.user_name}
               src={`${image}`}
               sx={{ width: 30, height: 30 }}
             />
