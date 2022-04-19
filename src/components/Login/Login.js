@@ -68,7 +68,7 @@ function Login() {
       if (data.login_token) {
         window.localStorage.setItem("token", data.login_token);
         window.localStorage.setItem("isLogging", true);
-        window.location.reload()
+        window.location.href = `/spe-evaluation-system/profile`;
       }
     }
 
