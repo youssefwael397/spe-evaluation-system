@@ -85,25 +85,6 @@ export default function Task() {
     }, [task])
 
 
-    useEffect(() => {
-        if (taskUsers) {
-            const new_users = users.map(user => {
-                taskUsers.map(taskUser => {
-                    if (taskUser.user_id !== user.user_id) {
-                        return user
-                    }
-                }
-                )
-            }
-            )
-
-            setUsers([...new_users])
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [task])
-
-
-
     const getTask = async () => {
         let api_url = `${API_PATH}/tasks/${params.id}`;
 
