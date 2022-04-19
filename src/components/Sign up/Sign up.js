@@ -74,11 +74,11 @@ const committeesList = [
     value: "Academy",
   },
   {
-    name: "Android",
+    name: "Android Development",
     value: "Android",
   },
   {
-    name: "E4ME",
+    name: "E4me",
     value: "E4ME",
   },
   {
@@ -106,11 +106,11 @@ const committeesList = [
     value: "Multimedia",
   },
   {
-    name: "Magazine Designs",
+    name: "Magazine Design",
     value: "Magazine_Designs",
   },
   {
-    name: "Web",
+    name: "Web Development",
     value: "Web",
   },
   {
@@ -126,11 +126,11 @@ const committeesList = [
     value: "OC",
   },
   {
-    name: "SOCIAL MEDIA",
+    name: "Social Media",
     value: "SOCIAL_MEDIA",
   },
   {
-    name: "DATA ANALYSIS",
+    name: "Data Analysis",
     value: "DATA ANALYSIS",
   },
   {
