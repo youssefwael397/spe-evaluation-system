@@ -44,7 +44,7 @@ export default function BasicModal({ user, token }) {
         if (success) {
             setTimeout(() => {
                 setSuccess(null)
-                window.location.reload()
+                window.location.href = 'admin'
             }, 1500)
         }
     }, [success])
