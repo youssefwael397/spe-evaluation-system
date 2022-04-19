@@ -131,7 +131,7 @@ export default function Tasks() {
     <div className="mx-auto">
       <div className="AdminPanel my-4 shadow rounded bg-white p-4 w-100">
         <div className="AdminPanel-name my-2">
-          <h4 className="mb-4">Tasks</h4>
+          <h4 className="mb-4">Tasks or Meetings</h4>
           <div className="task-options my-2">
             <form onSubmit={(e) => getTasks(e)}>
               <FormControl className="w-100">

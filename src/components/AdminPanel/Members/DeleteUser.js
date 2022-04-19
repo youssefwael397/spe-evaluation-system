@@ -44,6 +44,7 @@ export default function BasicModal({ user, token }) {
         if (success) {
             setTimeout(() => {
                 setSuccess(null)
+                window.location.reload()
             }, 1500)
         }
     }, [success])
