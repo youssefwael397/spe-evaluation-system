@@ -49,73 +49,77 @@ export default function AddCommitteeButton({ user_id, token }) {
     const [error, setError] = useState()
 
 
+
     const committeesList = [
         {
             name: "Academy",
-            value: "Academy"
+            value: "Academy",
         },
         {
-            name: "Android",
-            value: "Android"
+            name: "Android Development",
+            value: "Android",
         },
         {
-            name: "E4ME",
-            value: "E4ME"
+            name: "E4me",
+            value: "E4ME",
         },
         {
             name: "Extracurricular",
-            value: "Extra"
+            value: "Extra",
         },
         {
             name: "HRD",
-            value: "HRD"
+            value: "HRD",
         },
         {
             name: "HRM",
-            value: "HRM"
+            value: "HRM",
         },
         {
             name: "IR",
-            value: "IR"
+            value: "IR",
         },
         {
             name: "Logistics",
-            value: "Logistics"
+            value: "Logistics",
         },
         {
             name: "Multimedia",
-            value: "Multimedia"
+            value: "Multimedia",
         },
         {
-            name: "Magazine Designs",
-            value: "Magazine_Designs"
+            name: "Magazine Design",
+            value: "Magazine_Designs",
         },
         {
-            name: "Web",
-            value: "Web"
+            name: "Web Development",
+            value: "Web",
         },
         {
             name: "Magazine Editing",
-            value: "Magazine_Editing"
+            value: "Magazine_Editing",
         },
         {
             name: "Direct Marketing",
-            value: "Direct_Marketing"
+            value: "Direct_Marketing",
         },
         {
             name: "Organizing",
-            value: "OC"
+            value: "OC",
         },
         {
-            name: "SOCIAL MEDIA",
-            value: "SOCIAL_MEDIA"
+            name: "Social Media",
+            value: "SOCIAL_MEDIA",
         },
         {
-            name: "DATA SCIENCE",
-            value: "DATA SCIENCE"
+            name: "Data Analysis",
+            value: "DATA ANALYSIS",
         },
-    ]
-
+        {
+            name: "BD",
+            value: "BD",
+        },
+    ];
 
 
     const handleChangeCommittee = (event) => {
