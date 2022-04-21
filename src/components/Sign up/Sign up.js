@@ -131,7 +131,7 @@ const committeesList = [
   },
   {
     name: "Data Analysis",
-    value: "DATA_ANALYSIS",
+    value: "DATA ANALYSIS",
   },
   {
     name: "BD",
