@@ -28,6 +28,7 @@ function Leader_Board() {
     const [month, setMonth] = useState("");
     const [idleError, setIdleError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [isRequestSent, setIsRequestSent] = useState(false);
     const [members, setMembers] = useState([]);
     const [sortedMembers, setSortedMembers] = useState([]);
     const [committee, setCommittee] = useState();
@@ -112,6 +113,7 @@ function Leader_Board() {
     const getLeaderBoard = async (e) => {
         e.preventDefault();
         setIsLoading(true);
+        setIsRequestSent(true)
         setIdleError('')
         await fetch(`${API_PATH}/users/board/${committee}/${month}`)
             .then(res => {
@@ -276,7 +278,7 @@ function Leader_Board() {
                         </Table>
                     </TableContainer>
                     {
-                        sortedMembers.length < 1 && members.length < 1 && month ? <h5 className="mt-3 text-danger">{idleError}</h5> : null
+                        sortedMembers.length < 1 && members.length < 1 && month && isRequestSent ? <h5 className="mt-3 text-danger">{idleError}</h5> : null
                     }
                 </div>
             </div>
