@@ -239,7 +239,10 @@ function Leader_Board() {
                                             >
                                                 <TableCell component="th" scope="member">
                                                     {
-                                                        index > 2 && ++count
+                                                        index === 3 ? count = count + 4 : null
+                                                    }
+                                                    {
+                                                        index > 3 && ++count
                                                     }
                                                     {
                                                         index === 0 && <WorkspacePremiumIcon style={{ color: '#FFD700' }} />
