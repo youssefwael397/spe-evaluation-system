@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./Leader_Board.css";
 import { UserContext } from './../UserProvider';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import {
     Avatar,
     FormControl,
@@ -17,19 +20,16 @@ import {
     Paper,
 } from "@mui/material";
 
-import TaskIcon from '@mui/icons-material/Task';
-import GroupsIcon from '@mui/icons-material/Groups';
-import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import API_PATH from "../API_PATH";
-
-
-
 
 function Leader_Board() {
     const { user } = useContext(UserContext);
-
-    const [month, setMonth] = React.useState("");
+    let count = 0;
+    const [month, setMonth] = useState("");
+    const [idleError, setIdleError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
     const [members, setMembers] = useState([]);
+    const [sortedMembers, setSortedMembers] = useState([]);
     const [committee, setCommittee] = useState();
     const monthList = [
         {
@@ -81,7 +81,6 @@ function Leader_Board() {
             value: 12,
         },
     ];
-    let count = 0;
 
     const committeesList = [
         {
@@ -100,8 +99,20 @@ function Leader_Board() {
         }
     }, [user.first_com_name, user.second_com_name])
 
+    useEffect(() => {
+        const sortedLeaderBoard = sortLeaderBoard(members)
+        setSortedMembers([...sortedLeaderBoard])
+        setIsLoading(false)
+        if (sortedLeaderBoard.length < 1) {
+            setIdleError("This month is full of idleness. There is no tasks or meetings.")
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [members])
+
     const getLeaderBoard = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
+        setIdleError('')
         await fetch(`${API_PATH}/users/board/${committee}/${month}`)
             .then(res => {
                 if (res.ok) {
@@ -113,6 +124,31 @@ function Leader_Board() {
             .catch(error => console.log(error))
     }
 
+    const sortLeaderBoard = (members) => {
+        const leaderBoard = members.map(member => {
+            return {
+                user_name: member.user_name,
+                image: member.image,
+                meetings: `${member.user_meeting_grades ? member.user_meeting_grades : member.type === 'm' ? member.user_grades : '0'}/${member.type === 'm' ? member.task_grades : !member.type ? member.meeting_grades : '0'}`,
+                tasks: `${member.user_task_grades ? member.user_task_grades : member.type === 't' ? member.user_grades : '0'}/${member.type === 't' || !member.type ? member.task_grades : '0'}`,
+                total: `${member.user_task_grades ? (+member.user_task_grades + +member.user_meeting_grades) : member.user_grades}/${member.meeting_grades ? (+member.task_grades + +member.meeting_grades) : member.task_grades}`,
+                percent: `${member.user_task_grades ? Math.round((+member.user_task_grades + +member.user_meeting_grades) / (+member.task_grades + +member.meeting_grades) * 100) : Math.round((member.user_grades / member.task_grades) * 100)}`
+            }
+        })
+
+
+        for (let i = 0; i < leaderBoard.length; i++) {
+            for (let j = 0; j < leaderBoard.length - 1; j++) {
+                if (+leaderBoard[j].percent < +leaderBoard[j + 1].percent) {
+                    let temp = leaderBoard[j];
+                    leaderBoard[j] = leaderBoard[j + 1];
+                    leaderBoard[j + 1] = temp
+                }
+            }
+        }
+
+        return leaderBoard
+    }
 
     return (
         <div className="container-xl mx-auto text-center">
@@ -169,7 +205,14 @@ function Leader_Board() {
                     </form>
                 </div>
 
-                <div className="task-container my-4">
+                <div className="task-container my-4 ">
+                    {
+                        isLoading && <Box sx={{ width: '100%' }}>
+                            <LinearProgress />
+                        </Box>
+                    }
+
+
                     <TableContainer component={Paper}>
                         <Table aria-label="simple table">
                             <TableHead className="bg-dark">
@@ -184,34 +227,54 @@ function Leader_Board() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {members.map((member) => (
-                                    <TableRow
-                                        className="my-grades"
-                                        key={member.user_name}
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    >
-                                        <TableCell component="th" scope="member">
-                                            {++count}
-                                        </TableCell>
-                                        <TableCell align="center">
-                                            <Avatar
-                                                className="Leader_Board-image mx-auto"
-                                                alt="Nouran Ali"
-                                                src={`${member.image}`}
-                                                sx={{ width: 100, height: 100 }}
-                                                variant="rounded"
-                                            />
-                                        </TableCell>
-                                        <TableCell align="center">{member.user_name}</TableCell>
-                                        <TableCell align="center">{member.user_meeting_grades ? member.user_meeting_grades : member.type === 'm' ? member.user_grades : '0'}/{member.type === 'm' ? member.task_grades : !member.type ? member.meeting_grades : '0'}</TableCell>
-                                        <TableCell align="center">{member.user_task_grades ? member.user_task_grades : member.type === 't' ? member.user_grades : '0'}/{member.type === 't' || !member.type ? member.task_grades : '0'}</TableCell>
-                                        <TableCell align="center">{member.user_task_grades ? (+member.user_task_grades + +member.user_meeting_grades) : member.user_grades}/{member.meeting_grades ? (+member.task_grades + +member.meeting_grades) : member.task_grades}</TableCell>
-                                        <TableCell align="center">{member.user_task_grades ? Math.round((+member.user_task_grades + +member.user_meeting_grades) / (+member.task_grades + +member.meeting_grades) * 100) : Math.round((member.user_grades / member.task_grades) * 100)}%</TableCell>
-                                    </TableRow>
-                                ))}
+                                {
+                                    isLoading ? (
+                                        null
+                                    ) : (
+                                        sortedMembers.map((member, index) => (
+                                            <TableRow
+                                                className="my-grades"
+                                                key={member.user_name}
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="member">
+                                                    {
+                                                        index > 2 && ++count
+                                                    }
+                                                    {
+                                                        index === 0 && <WorkspacePremiumIcon style={{ color: '#FFD700' }} />
+                                                    }
+                                                    {
+                                                        index === 1 && <WorkspacePremiumIcon style={{ color: '#C0C0C0' }} />
+                                                    }
+                                                    {
+                                                        index === 2 && <WorkspacePremiumIcon style={{ color: '#CD7F32' }} />
+                                                    }
+                                                </TableCell>
+                                                <TableCell align="center">
+                                                    <Avatar
+                                                        className="Leader_Board-image mx-auto"
+                                                        alt={member.user_name}
+                                                        src={`${member.image}`}
+                                                        sx={{ width: 100, height: 100 }}
+                                                        variant="rounded"
+                                                    />
+                                                </TableCell>
+                                                <TableCell align="center">{member.user_name}</TableCell>
+                                                <TableCell align="center">{member.meetings}</TableCell>
+                                                <TableCell align="center">{member.tasks}</TableCell>
+                                                <TableCell align="center">{member.total}</TableCell>
+                                                <TableCell align="center">{member.percent}%</TableCell>
+                                            </TableRow>
+                                        ))
+                                    )
+                                }
                             </TableBody>
                         </Table>
                     </TableContainer>
+                    {
+                        sortedMembers.length < 1 && members.length < 1 && month ? <h5 className="mt-3 text-danger">{idleError}</h5> : null
+                    }
                 </div>
             </div>
         </div>
