@@ -78,7 +78,7 @@ function Login() {
     <div class="container">
       <div className="mx-auto my-5 w-100">
         <form className="shadow-lg mt-4 p-5 rounded Login mx-auto" onSubmit={handleLogin}>
-          <h3 className="text-muted my-3">Login Now</h3>
+          <h3 className="text-center text-muted my-3">Login Now</h3>
           <TextField className="text-center my-4"
             id="outlined-email-input"
             label="Email"
@@ -123,21 +123,25 @@ function Login() {
               </div>
             ) : null}
           </Box>
-          <Button
-            className="mx-auto rounded-pill px-5 p-2 mb-3 mt-3"
-            variant="outlined"
-            type="submit"
-            endIcon={<ArrowForwardIosIcon />}
-          >
-            Login
-          </Button>
-
-          <p>
-            Create A new Account <br />
-            <NavLink className="text-decoration-none" exact to={`${ROOT_PATH}/signup`} underline="none">
-              Sign Up
+          <div className="text-center mx-auto">
+            <Button
+              className="text-center mx-auto rounded-pill px-5 p-2 mb-1 mt-3"
+              variant="outlined"
+              type="submit"
+              endIcon={<ArrowForwardIosIcon />}
+            >
+              Login
+            </Button>
+          </div>
+          <div className="text-center">
+            <NavLink className="text-danger text-decoration-none" exact to={`${ROOT_PATH}/forgetpassword`} underline="none">
+              Forget Password
             </NavLink>
-          </p>
+            <br />
+            <NavLink className=" text-decoration-none" exact to={`${ROOT_PATH}/signup`} underline="none">
+              Create A new Account
+            </NavLink>
+          </div>
         </form>
       </div >
     </div>

@@ -14,8 +14,10 @@ import { UserContext } from './UserProvider';
 import Requests from './Requests/Requests';
 import Member from './AdminPanel/Member/Member';
 import Task from './AdminPanel/Task';
+import ForgetPassword from './ForgetPassword/ForgetPassword';
 import My404Component from "./My404Component/My404Component";
 import ROOT_PATH from './ROOT_PATH.js'
+import ResetPassword from './ResetPassword/ResetPassword';
 export default function AppRoutes() {
 
   const root_route = ROOT_PATH
@@ -43,6 +45,8 @@ export default function AppRoutes() {
         ) : (
           <>
             <Route path={`${root_route}/login`} element={<Login />} />
+            <Route path={`${root_route}/forgetpassword`} element={<ForgetPassword />} />
+            <Route path={`${root_route}/resetpassword/:id/:token`} element={<ResetPassword />} />
             <Route path={`${root_route}/signup`} element={<SignUp />} />
           </>
         )
