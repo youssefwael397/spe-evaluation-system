@@ -1,5 +1,7 @@
 import * as React from "react";
 import { useState, useContext } from "react";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 import {
   FormControl,
   MenuItem,
@@ -17,6 +19,7 @@ export default function Tasks() {
   const [tasks, setTasks] = useState([]);
   const [month, setMonth] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [type, setType] = useState("");
   const typeList = [
@@ -87,6 +90,8 @@ export default function Tasks() {
 
   const getTasks = async (e) => {
     e.preventDefault();
+    setIsLoading(true)
+    setTasks([])
     let api_url = ``;
 
     if (type === "a") {
@@ -121,8 +126,7 @@ export default function Tasks() {
             );
           }
           setTasks([...data.tasks]);
-        } else {
-          console.log("cannot get tasks");
+          setIsLoading(false)
         }
       });
   };
@@ -204,11 +208,14 @@ export default function Tasks() {
                   ? "tasks"
                   : "tasks and meetings"}
             </h3>
-          ) : <h3 className="mt-3">There is no {type === "m"
-            ? "meetings"
-            : type === "t"
-              ? "tasks"
-              : "tasks or meetings"}</h3>}
+          ) : <h3 className="mt-3">{error}</h3>}
+
+
+          {
+            isLoading ? <Box className="text-center mx-auto ">
+              <CircularProgress />
+            </Box> : null
+          }
 
           <div className="row">
             {tasks.length > 0 ? (
@@ -248,38 +255,7 @@ export default function Tasks() {
                   </div>
 
                   <br />
-                  {/* <div className="row">
-                  {task.Users.length > 1 ? (
-                    task.Users.map((user) => (
-                      <div className=" col-lg-4 col-sm-6 col-xs-12">
-                        <Card className="mb-4">
-                          <CardActionArea>
-                            <CardContent>
-                              <Typography
-                                gutterBottom
-                                variant="h6"
-                                component="div"
-                              >
-                                <PersonIcon /> {user.user_name}
-                              </Typography>
-                              <Typography
-                                variant="body2"
-                                color="text.secondary"
-                              >
-                                value : {user.User_Task.value}
-                              </Typography>
-                            </CardContent>
-                          </CardActionArea>
-                        </Card>
-                      </div>
-                    ))
-                  ) : (
-                    <p>
-                      There is no members of this{" "}
-                      {task.type === "m" ? "meeting" : "task"}
-                    </p>
-                  )}
-                </div> */}
+
                 </div>
               ))
             ) : (

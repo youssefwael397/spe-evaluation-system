@@ -13,14 +13,19 @@ import { Link } from 'react-router-dom';
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 import { UserContext } from './../../UserProvider';
 import DeleteUser from './DeleteUser'
 import API_PATH from "../../API_PATH";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 
 
 export default function Members() {
 
     const { user, token } = useContext(UserContext);
+    const [isLoading, setIsLoading] = useState(false);
     const [members, setMembers] = useState([]);
     const [filteredMembers, setFilteredMembers] = useState([]);
     const [searchValue, setSearchValue] = useState('')
@@ -43,6 +48,7 @@ export default function Members() {
     }, [members, searchValue])
 
     const getActiveMembers = async () => {
+        setIsLoading(true)
         await fetch(`${API_PATH}/users/?active=1&committee=${user.first_com_id}`, {
             headers: { 'Authorization': token }
         })
@@ -52,6 +58,7 @@ export default function Members() {
                     setMembers([...data.active_users])
                 }
             })
+        setIsLoading(false)
     }
 
     return (
@@ -70,17 +77,27 @@ export default function Members() {
                         onChange={(e) => setSearchValue(e.target.value)}
                         required
                     />
+                    {
+                        isLoading ? <Box className="text-center mx-auto my-4">
+                            <CircularProgress />
+                        </Box> : null
+                    }
                     {/* Members Container */}
                     <div className="row mt-4">
                         {
                             filteredMembers.map(member => (
                                 <Card className="col-lg-4 col-md-6 col-xs-12 mb-4 p-4">
                                     <CardMedia
-                                        component="img"
-                                        height="400"
-                                        image={`${member.image}`}
-                                        alt={member.user_name}
-                                    />
+                                        className="text-center mx-auto"
+                                    >
+                                        <LazyLoadImage
+                                            alt={member.user_name}
+                                            src={member.image}
+                                            height="400"
+                                        // effect="opacity"
+                                        // delayTime="300"
+                                        />
+                                    </CardMedia>
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="div">
                                             {member.user_name}
@@ -110,6 +127,9 @@ export default function Members() {
                                     </CardActions>
                                 </Card>
                             ))
+                        }
+                        {
+                            filteredMembers.length < 1 && searchValue ? <h4 className="mt-3">There is no result matching with <span className="text-primary">{searchValue.trim()}</span></h4> : null
                         }
                     </div>
                 </div>

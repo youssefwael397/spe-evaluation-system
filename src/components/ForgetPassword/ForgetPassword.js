@@ -1,15 +1,11 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import {
     Box,
     TextField,
     Button,
 } from "@mui/material";
-import { NavLink } from "react-router-dom";
-import { VisibilityOff, Visibility } from "@mui/icons-material";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
 import API_PATH from "../API_PATH";
-import { UserContext } from "./../UserProvider";
-import ROOT_PATH from '../ROOT_PATH'
 
 export default function ForgetPassword() {
 

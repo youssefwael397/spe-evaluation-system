@@ -4,6 +4,7 @@ import { UserContext } from './../UserProvider';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import {
     Avatar,
     FormControl,
@@ -257,12 +258,19 @@ function Leader_Board() {
                                                     }
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    <Avatar
+                                                    {/* <Avatar
                                                         className="Leader_Board-image mx-auto"
                                                         alt={member.user_name}
                                                         src={`${member.image}`}
                                                         sx={{ width: 100, height: 100 }}
                                                         variant="rounded"
+                                                    /> */}
+                                                    <LazyLoadImage
+                                                        className="rounded Leader_Board-image mx-auto"
+                                                        alt={member.user_name}
+                                                        src={member.image}
+                                                        height="120px"
+                                                        effect="opacity"
                                                     />
                                                 </TableCell>
                                                 <TableCell align="center">{member.user_name}</TableCell>
