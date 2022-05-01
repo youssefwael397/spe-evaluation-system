@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/spe-evaluation-system/static/css/main.a1694d47.css",
-    "main.js": "/spe-evaluation-system/static/js/main.1c95271d.js",
+    "main.js": "/spe-evaluation-system/static/js/main.250b70e2.js",
     "static/js/787.bcf8a643.chunk.js": "/spe-evaluation-system/static/js/787.bcf8a643.chunk.js",
     "static/media/background.jpeg": "/spe-evaluation-system/static/media/background.ed21d256b2e80e0660df.jpeg",
     "static/media/logo.png": "/spe-evaluation-system/static/media/logo.bf64d55e0304c1047d99.png",
@@ -9,11 +9,11 @@
     "static/media/2.jpg": "/spe-evaluation-system/static/media/2.88bdbc91a544a2a4d04a.jpg",
     "index.html": "/spe-evaluation-system/index.html",
     "main.a1694d47.css.map": "/spe-evaluation-system/static/css/main.a1694d47.css.map",
-    "main.1c95271d.js.map": "/spe-evaluation-system/static/js/main.1c95271d.js.map",
+    "main.250b70e2.js.map": "/spe-evaluation-system/static/js/main.250b70e2.js.map",
     "787.bcf8a643.chunk.js.map": "/spe-evaluation-system/static/js/787.bcf8a643.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a1694d47.css",
-    "static/js/main.1c95271d.js"
+    "static/js/main.250b70e2.js"
   ]
 }
