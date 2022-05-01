@@ -14,6 +14,7 @@ import { VisibilityOff, Visibility } from "@mui/icons-material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import API_PATH from "../API_PATH";
 import { UserContext } from "./../UserProvider";
+import LinearProgress from '@mui/material/LinearProgress';
 import ROOT_PATH from '../ROOT_PATH'
 
 function Login() {
@@ -23,6 +24,7 @@ function Login() {
   });
 
   const { isLogging } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState();
   const [error, setError] = useState();
 
@@ -48,6 +50,7 @@ function Login() {
   };
 
   const handleLogin = async (e) => {
+    setIsLoading(true)
     e.preventDefault();
     setError('');
     const form = new FormData();
@@ -63,6 +66,7 @@ function Login() {
     const data = await res.json();
     if (data.status !== "ok") {
       const newErr = await data.error;
+      setIsLoading(false)
       setError(newErr);
     } else {
       if (data.login_token) {
@@ -77,70 +81,82 @@ function Login() {
   return (
     <div class="container">
       <div className="mx-auto my-5 w-100">
-        <form className="shadow-lg mt-4 p-5 rounded Login mx-auto" onSubmit={handleLogin}>
-          <h3 className="text-center text-muted my-3">Login Now</h3>
-          <TextField className="text-center my-4"
-            id="outlined-email-input"
-            label="Email"
-            type="email"
-            value={email}
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Box >
-            <FormControl variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">
-                Password
-              </InputLabel>
-              <OutlinedInput
-                required={true}
-                id="outlined-adornment-password"
-                type={values.showPassword ? "text" : "password"}
-                value={values.password}
-                onChange={handleChangePassword("password")}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {values.showPassword ? (
-                        <VisibilityOff />
-                      ) : (
-                        <Visibility />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                label="Password"
-              />
-            </FormControl>
-            {error ? (
-              <div className="error">
-                <span className="text-danger">{error}</span>
-              </div>
-            ) : null}
-          </Box>
-          <div className="text-center mx-auto">
-            <Button
-              className="text-center mx-auto rounded-pill px-5 p-2 mb-1 mt-3"
-              variant="outlined"
-              type="submit"
-              endIcon={<ArrowForwardIosIcon />}
-            >
-              Login
-            </Button>
-          </div>
-          <div className="text-center">
-            <NavLink className="text-danger text-decoration-none" exact to={`${ROOT_PATH}/forgetpassword`} underline="none">
-              Forget Password
-            </NavLink>
-            <br />
-            <NavLink className=" text-decoration-none" exact to={`${ROOT_PATH}/signup`} underline="none">
-              Create A new Account
-            </NavLink>
+
+        <form className="shadow-lg rounded Login mx-auto" onSubmit={handleLogin}>
+          {
+            isLoading && <Box className="overflow-hidden" sx={{ width: '100%' }}>
+              <LinearProgress />
+            </Box>
+          }
+
+          <div className={`mt-4 p-5 ${isLoading && 'opacity-50'}`}>
+
+            <h3 className="text-center text-muted my-2">Login Now</h3>
+            <TextField className="text-center my-4"
+              id="outlined-email-input"
+              label="Email"
+              type="email"
+              value={email}
+              required
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={isLoading & true}
+            />
+            <Box >
+              <FormControl variant="outlined">
+                <InputLabel htmlFor="outlined-adornment-password">
+                  Password
+                </InputLabel>
+                <OutlinedInput
+                  required={true}
+                  id="outlined-adornment-password"
+                  type={values.showPassword ? "text" : "password"}
+                  value={values.password}
+                  onChange={handleChangePassword("password")}
+                  disabled={isLoading & true}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {values.showPassword ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="Password"
+                />
+              </FormControl>
+              {error ? (
+                <div className="error">
+                  <span className="text-danger">{error}</span>
+                </div>
+              ) : null}
+            </Box>
+            <div className=" text-center mx-auto">
+              <Button
+                className="text-center mx-auto rounded-pill px-5 p-2 mb-1 mt-3"
+                variant="outlined"
+                type="submit"
+                endIcon={<ArrowForwardIosIcon />}
+              >
+                Login
+              </Button>
+            </div>
+            <div className="mt-2 text-center">
+              <NavLink className="text-danger text-decoration-none" exact to={`${ROOT_PATH}/forgetpassword`} underline="none">
+                Forget Password?
+              </NavLink>
+              <br />
+              <NavLink className=" text-decoration-none" exact to={`${ROOT_PATH}/signup`} underline="none">
+                Create A new Account
+              </NavLink>
+            </div>
           </div>
         </form>
       </div >

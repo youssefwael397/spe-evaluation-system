@@ -28,7 +28,7 @@ export default function Members() {
     const [isLoading, setIsLoading] = useState(false);
     const [members, setMembers] = useState([]);
     const [filteredMembers, setFilteredMembers] = useState([]);
-    const [searchValue, setSearchValue] = useState('')
+    const [searchValue, setSearchValue] = useState('');
 
 
     useEffect(() => {
@@ -94,8 +94,6 @@ export default function Members() {
                                             alt={member.user_name}
                                             src={member.image}
                                             height="400"
-                                        // effect="opacity"
-                                        // delayTime="300"
                                         />
                                     </CardMedia>
                                     <CardContent>

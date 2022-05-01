@@ -15,6 +15,7 @@ import {
     CardActionArea
 } from "@mui/material";
 import ListItemText from '@mui/material/ListItemText';
+import CircularProgress from '@mui/material/CircularProgress';
 import FormatListNumberedRtlIcon from '@mui/icons-material/FormatListNumberedRtl';
 import GroupsIcon from '@mui/icons-material/Groups';
 import Checkbox from '@mui/material/Checkbox';
@@ -24,9 +25,6 @@ import API_PATH from "./../API_PATH";
 import { UserContext } from './../UserProvider';
 import PersonIcon from "@mui/icons-material/Person";
 import ROOT_PATH from '../ROOT_PATH';
-
-// import { UserContext } from '../../UserProvider';
-
 
 export default function Task() {
 
@@ -195,120 +193,129 @@ export default function Task() {
             })
     }
 
-    return (
-        <div className="container-xl">
-            <div className="my-4 rounded bg-white p-4 position-relative w-100">
-                <div className="d-flex align-items-center my-4">
-                    <div className="d-flex ">
-                        <h5 className="text-secondary mx-2">{taskUsers.Users ? taskUsers.Users.length : null} {taskUsers.Users ? <GroupsIcon className="fs-3" /> : null}</h5>
-                        <h5 className="text-danger mx-2">{task.task_value} <FormatListNumberedRtlIcon /></h5>
+    if (task.task_name && users && personNames) {
+        return (
+            <div className="container-xl">
+                <div className="my-4 rounded bg-white p-4 position-relative w-100">
+                    <div className="d-flex align-items-center my-4">
+                        <div className="d-flex ">
+                            <h5 className="text-secondary mx-2">{taskUsers.Users ? taskUsers.Users.length : null} {taskUsers.Users ? <GroupsIcon className="fs-3" /> : null}</h5>
+                            <h5 className="text-danger mx-2">{task.task_value} <FormatListNumberedRtlIcon /></h5>
+                        </div>
+                        <h4 className="text-primary text-center mx-auto">{task.task_name} {task.type === "m" ? 'meeting' : 'task'}</h4>
+                        <Button onClick={deleteTaskById}><DeleteIcon className="text-danger me-auto" /></Button>
                     </div>
-                    <h4 className="text-primary text-center mx-auto">{task.task_name} {task.type === "m" ? 'meeting' : 'task'}</h4>
-                    <Button onClick={deleteTaskById}><DeleteIcon className="text-danger me-auto" /></Button>
-                </div>
-                <hr />
-                <div className="task-options mb-2">
-                    <h5 className="my-2">Add members values</h5>
-                    <br />
-                    <form onSubmit={(e) => InsertUsers(e)} >
-                        <FormControl
-                            className="w-100 mb-3"
-                        >
-                            <InputLabel id="demo-multiple-checkbox-label">Members</InputLabel>
-                            <Select
-                                labelId="demo-multiple-checkbox-label"
-                                id="demo-multiple-checkbox"
-                                multiple
-                                value={personNames}
-                                onChange={handleChange}
-                                input={<OutlinedInput label="Members" />}
-                                required
-                                renderValue={(selected) => selected.join(', ')}
+                    <hr />
+                    <div className="task-options mb-2">
+                        <h5 className="my-2">Add members values</h5>
+                        <br />
+                        <form onSubmit={(e) => InsertUsers(e)} >
+                            <FormControl
+                                className="w-100 mb-3"
                             >
+                                <InputLabel id="demo-multiple-checkbox-label">Members</InputLabel>
+                                <Select
+                                    labelId="demo-multiple-checkbox-label"
+                                    id="demo-multiple-checkbox"
+                                    multiple
+                                    value={personNames}
+                                    onChange={handleChange}
+                                    input={<OutlinedInput label="Members" />}
+                                    required
+                                    renderValue={(selected) => selected.join(', ')}
+                                >
 
-                                {
-                                    users.map((user) => (
-                                        <MenuItem key={user.user_name} value={user.user_name}>
-                                            <Checkbox checked={personNames.indexOf(user.user_name) > -1} />
-                                            <ListItemText primary={user.user_name} />
-                                        </MenuItem>
-                                    ))
-                                }
-                            </Select>
-                        </FormControl>
+                                    {
+                                        users.map((user) => (
+                                            <MenuItem key={user.user_name} value={user.user_name}>
+                                                <Checkbox checked={personNames.indexOf(user.user_name) > -1} />
+                                                <ListItemText primary={user.user_name} />
+                                            </MenuItem>
+                                        ))
+                                    }
+                                </Select>
+                            </FormControl>
 
-                        <TextField
-                            className="w-100 mb-2"
-                            id="outlined-basic"
-                            label="Value"
-                            variant="outlined"
-                            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', min: 0, max: task.task_value + 2 }}
-                            type="number"
-                            value={taskValue}
-                            onChange={(e) => setTaskValue(e.target.value)}
-                            required
-                        />
-                        <br />
-                        <br />
+                            <TextField
+                                className="w-100 mb-2"
+                                id="outlined-basic"
+                                label="Value"
+                                variant="outlined"
+                                inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', min: 0, max: task.task_value + 2 }}
+                                type="number"
+                                value={taskValue}
+                                onChange={(e) => setTaskValue(e.target.value)}
+                                required
+                            />
+                            <br />
+                            <br />
 
-                        <Button type="submit" className="w-25 rounded" variant="contained">
-                            Add
-                        </Button>
-                    </form>
+                            <Button type="submit" className="w-25 rounded" variant="contained">
+                                Add
+                            </Button>
+                        </form>
+                    </div>
+
+                    {/* //////////////////////////////////// */}
+
+                    <div className="row my-4">
+                        {
+                            taskUsers.Users ? (
+                                taskUsers.Users.map(user => (
+                                    <div className="col-lg-4 col-sm-6 col-xs-12">
+                                        <Card className={`bg-light text-dark mb-4`}>
+                                            <CardActionArea>
+                                                <CardContent>
+                                                    <Typography className="d-flex justify-content-between" gutterBottom variant="h5" component="div">
+                                                        <PersonIcon />
+                                                        <Link className=" align text-decoration-none text-center" to={`${ROOT_PATH}/admin/member/${user.user_id}`}>
+                                                            <Typography className=" text-primary fs-4"  >
+                                                                {user.user_name}
+                                                            </Typography>
+                                                            <Typography className=" text-secondary fs-6" variant="body2" >
+                                                                value : {user.User_Task.value}/{task.task_value}
+                                                            </Typography>
+                                                        </Link>
+                                                        <Button onClick={() => handleOpen(user.user_id, user.user_name)} ><DeleteIcon className="text-danger" /></Button>
+                                                    </Typography>
+
+                                                </CardContent>
+                                            </CardActionArea>
+                                        </Card>
+                                    </div>
+                                ))
+                            ) : <p className="fs-4 text-center">There is no members yet</p>
+                        }
+                    </div>
+
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <Box sx={style} className="border border-secondary rounded-3">
+                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                Delete {task.task_name} from {deleteTaskUser.name}
+                            </Typography>
+                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                <p>Are You Sure?</p>
+                                <Button variant="outlined" onClick={handleClose}>Cancel</Button>
+                                <Button variant="contained" color="error" onClick={handleDeleteTaskUser} className="ms-2">Delete</Button>
+                            </Typography>
+                        </Box>
+                    </Modal>
+
                 </div>
-
-                {/* //////////////////////////////////// */}
-
-                <div className="row my-4">
-                    {
-                        taskUsers.Users ? (
-                            taskUsers.Users.map(user => (
-                                <div className="col-lg-4 col-sm-6 col-xs-12">
-                                    <Card className={`bg-light text-dark mb-4`}>
-                                        <CardActionArea>
-                                            <CardContent>
-                                                <Typography className="d-flex justify-content-between" gutterBottom variant="h5" component="div">
-                                                    <PersonIcon />
-                                                    <Link className=" align text-decoration-none text-center" to={`${ROOT_PATH}/admin/member/${user.user_id}`}>
-                                                        <Typography className=" text-primary fs-4"  >
-                                                            {user.user_name}
-                                                        </Typography>
-                                                        <Typography className=" text-secondary fs-6" variant="body2" >
-                                                            value : {user.User_Task.value}/{task.task_value}
-                                                        </Typography>
-                                                    </Link>
-                                                    <Button onClick={() => handleOpen(user.user_id, user.user_name)} ><DeleteIcon className="text-danger" /></Button>
-                                                </Typography>
-
-                                            </CardContent>
-                                        </CardActionArea>
-                                    </Card>
-                                </div>
-                            ))
-                        ) : <p className="fs-4 text-center">There is no members yet</p>
-                    }
-                </div>
-
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                >
-                    <Box sx={style} className="border border-secondary rounded-3">
-                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                            Delete {task.task_name} from {deleteTaskUser.name}
-                        </Typography>
-                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            <p>Are You Sure?</p>
-                            <Button variant="outlined" onClick={handleClose}>Cancel</Button>
-                            <Button variant="contained" color="error" onClick={handleDeleteTaskUser} className="ms-2">Delete</Button>
-                        </Typography>
-                    </Box>
-                </Modal>
 
             </div>
-
-        </div>
-    )
+        )
+    }
+    else {
+        return (
+            <Box className="mt-5 text-center mx-auto ">
+                <CircularProgress />
+            </Box>
+        )
+    }
 }
