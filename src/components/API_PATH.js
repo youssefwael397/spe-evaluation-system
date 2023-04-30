@@ -1,2 +1,2 @@
-const API_PATH = 'https://spe-evaluation-system-server.herokuapp.com'
+const API_PATH = 'https://spe-evaluation.herokuapp.com'
 module.exports = API_PATH
